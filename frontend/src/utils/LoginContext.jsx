@@ -1,12 +1,18 @@
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
 
 const BelepContext = createContext();
 
 function Belep(props) {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const setIsLogged = (ertek) => {
+        localStorage.setItem('isLoggedIn', JSON.stringify(ertek));
+    };
+
+    const getIsLogged = () => {
+        return JSON.parse(localStorage.getItem('isLoggedIn'));
+    };
 
     return (
-        <BelepContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <BelepContext.Provider value={{ setIsLogged, getIsLogged }}>
             {props.children}
         </BelepContext.Provider>
     );

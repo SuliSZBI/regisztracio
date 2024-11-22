@@ -2,8 +2,7 @@ import { useContext } from 'react';
 import BelepContext from '../utils/LoginContext';
 
 const Login = () => {
-    const { isLoggedIn, setIsLoggedIn } = useContext(BelepContext);
-    // console.log(isLoggedIn);
+    const { setIsLogged } = useContext(BelepContext);
 
     const belep = async (event) => {
         event.preventDefault();
@@ -25,8 +24,7 @@ const Login = () => {
 
         if (response.ok) {
             window.alert(valasz.msg);
-            setIsLoggedIn(true);
-            localStorage.setItem('belepve', true);
+            setIsLogged(true);
             window.location.replace('/');
         } else {
             window.alert(valasz.msg);
@@ -36,10 +34,16 @@ const Login = () => {
         <div>
             <form>
                 <label htmlFor="email">E-mail:</label>
-                <input type="text" id="email" />
+                <input
+                    type="text"
+                    id="email"
+                />
                 <br />
                 <label htmlFor="password">Jelszó:</label>
-                <input type="text" id="password" />
+                <input
+                    type="text"
+                    id="password"
+                />
                 <br />
                 <button onClick={belep}>Belép</button>
             </form>

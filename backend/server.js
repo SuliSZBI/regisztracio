@@ -65,7 +65,7 @@ app.post('/register', async (req, res) => {
 
         const newUser = new User({ email, password: hashedPassword });
 
-        console.log(newUser);
+        // console.log(newUser);
 
         await newUser.save();
 
@@ -77,7 +77,7 @@ app.post('/register', async (req, res) => {
 
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
 
     try {
         if (!email || !password) {

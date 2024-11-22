@@ -1,17 +1,25 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BelepContext from '../utils/LoginContext';
 
 const Navbar = () => {
-    const { isLoggedIn } = useContext(BelepContext);
-    // const isLoggedIn = localStorage.getItem('belepve');
-    console.log(isLoggedIn);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { getIsLogged, setIsLogged } = useContext(BelepContext);
+
+    useEffect(() => {
+        setIsLoggedIn(getIsLogged());
+    }, []);
+
+    const kilep = () => {
+        setIsLogged(false);
+        window.location.replace('/');
+    };
 
     return (
         <div>
             <Link to="/">Home</Link>
             {isLoggedIn ? (
-                <Link to="/logout">Logout</Link>
+                <button onClick={kilep}>Logout</button>
             ) : (
                 <>
                     <Link to="/login">Login</Link>
